@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { EventEmitter, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Client } from '../models/Client';
 
@@ -7,7 +7,6 @@ import { Client } from '../models/Client';
   providedIn: 'root'
 })
 export class ClientsService {
-  private updateClientListEmitter = new EventEmitter();
   private clientsUrl: string = 'http://localhost:3333/clients/'
   httpOptions = {
     headers: new HttpHeaders({
@@ -17,14 +16,6 @@ export class ClientsService {
   }
 
   constructor(private httpClient: HttpClient) { }
-
-  getUpdateClientListEmitter() {
-    return this.updateClientListEmitter;
-  }
-
-  emitUpdateClientList() {
-    this.updateClientListEmitter.emit();
-  }
 
   getClients(): Observable<Client[]> {
     return this.httpClient.get<Client[]>(`${this.clientsUrl}`, this.httpOptions);

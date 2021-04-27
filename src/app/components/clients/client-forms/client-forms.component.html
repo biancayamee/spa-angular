@@ -1,1 +1,44 @@
-<p>client-forms works!</p>
+<div class="div-spinner">
+  <ion-spinner *ngIf="isLoadingForm; else showForm" name="crescent"></ion-spinner>
+</div>
+
+<ng-template #showForm>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <ion-item class="ion-no-padding">
+      <ion-label position="stacked"> Nome </ion-label>
+      <ion-input class="input" formControlName="name"></ion-input>
+    </ion-item>
+    <span class="error-msg" *ngIf="name.errors && name.errors.required && (name.dirty || name.touched)">Campo
+      obrigatório.</span>
+
+    <ion-item class="ion-no-padding">
+      <ion-label position="stacked"> Email </ion-label>
+      <ion-input class="input" formControlName="email"></ion-input>
+    </ion-item>
+    <div *ngIf="email.errors && (email.dirty || email.touched)">
+      <span class="error-msg" *ngIf="email.errors.required">Campo obrigatório.</span>
+      <span class="error-msg" *ngIf="email.errors.pattern">Formato de email válido.</span>
+    </div>
+
+    <ion-item class="ion-no-padding">
+      <ion-label position="stacked"> CPF </ion-label>
+      <ion-input class="input" formControlName="cpf"></ion-input>
+    </ion-item>
+    <div *ngIf="cpf.errors && (cpf.dirty || cpf.touched)">
+      <span class="error-msg" *ngIf="cpf.errors.required">Campo obrigatório.</span>
+      <span class="error-msg" *ngIf="cpf.errors.pattern">Formato de CPF válido.</span>
+    </div>
+
+    <ion-item class="ion-no-padding">
+      <ion-label position="stacked"> Sexo </ion-label>
+      <ion-input class="input" formControlName="gender"></ion-input>
+    </ion-item>
+    <span class="error-msg" *ngIf="gender.errors && gender.errors.required && (gender.dirty || gender.touched)">Campo
+      obrigatório.</span>
+    <div class="div-btn">
+      <ion-button [disabled]="registerForm.invalid" shape="round" type="submit" class="large">
+        <span>{{ creatingNewClient ? 'Cadastrar' : 'Salvar alterações' }}</span>
+      </ion-button>
+    </div>
+  </form>
+</ng-template>
