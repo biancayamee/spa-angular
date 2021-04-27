@@ -10,12 +10,14 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProductFormsComponent } from './components/products/product-forms/product-forms.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ClientFormsComponent,
+    ProductFormsComponent
   ],
   imports: [
     BrowserModule,

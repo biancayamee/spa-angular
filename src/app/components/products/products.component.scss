@@ -1,0 +1,18 @@
+.add-product-btn {
+    margin-right: 32px;
+}
+.empty-products-list {
+    margin-top: 32px;
+    text-align: center;
+}
+.div-list {
+    padding: 16px;
+    ion-item {
+        margin-right: 24px;
+        padding-left: 0px !important;
+        div.item-native {
+            padding-left: 0px !important;
+        }
+        margin-top: 8px;
+    }
+}

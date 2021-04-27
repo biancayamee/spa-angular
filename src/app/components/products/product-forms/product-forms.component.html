@@ -1,0 +1,42 @@
+<div class="div-spinner">
+  <ion-spinner *ngIf="isLoadingForm; else showForm" name="crescent"></ion-spinner>
+</div>
+
+<ng-template #showForm>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <ion-item class="ion-no-padding">
+      <ion-label position="stacked"> Nome </ion-label>
+      <ion-input class="input" formControlName="name"></ion-input>
+    </ion-item>
+    <span class="error-msg" *ngIf="name.errors && name.errors.required && (name.dirty || name.touched)">Campo
+      obrigatório.</span>
+
+    <ion-item class="ion-no-padding">
+      <ion-label position="stacked"> Fabricação </ion-label>
+      <ion-input class="input" formControlName="manufacturing"></ion-input>
+    </ion-item>
+    <div *ngIf="manufacturing.errors && (manufacturing.dirty || manufacturing.touched)">
+      <span class="error-msg" *ngIf="manufacturing.errors.required">Campo obrigatório.</span>
+    </div>
+
+    <ion-item class="ion-no-padding">
+      <ion-label position="stacked"> Tamanho </ion-label>
+      <ion-input class="input" formControlName="size"></ion-input>
+    </ion-item>
+    <div *ngIf="size.errors && (size.dirty || size.touched)">
+      <span class="error-msg" *ngIf="size.errors.required">Campo obrigatório.</span>
+    </div>
+
+    <ion-item class="ion-no-padding">
+      <ion-label position="stacked"> Preço </ion-label>
+      <ion-input class="input" formControlName="price"></ion-input>
+    </ion-item>
+    <span class="error-msg" *ngIf="price.errors && price.errors.required && (price.dirty || price.touched)">Campo
+      obrigatório.</span>
+    <div class="div-btn">
+      <ion-button [disabled]="registerForm.invalid" shape="round" type="submit" class="large">
+        <span>{{ creatingNewProduct ? 'Cadastrar' : 'Salvar alterações' }}</span>
+      </ion-button>
+    </div>
+  </form>
+</ng-template>
